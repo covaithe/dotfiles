@@ -9,4 +9,5 @@ then
   alias la='gls -A --color'
 fi
 
+alias subl='~/bin/Sublime\ Text\ 2/sublime_text'
 alias edit="subl ."
