@@ -1,0 +1,16 @@
+[user]
+        name = Greg Fleming
+        email = gfleming@coletaylor.com
+[alias]
+        co = checkout
+        st = status
+        ci = commit
+        aa = add --all
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+[apply]
+        whitespace = nowarn
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
