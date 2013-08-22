@@ -4,6 +4,8 @@ else
   export PS1='%3~$(git_info_for_prompt)%# '
 fi
 
+export skip_on_db_migrate=1
+
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 

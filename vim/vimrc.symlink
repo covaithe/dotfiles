@@ -347,11 +347,13 @@ function! RunTests(filename)
     else
         if filereadable("script/test")
             exec ":!script/test " . a:filename
-"       elseif filereadable("Gemfile")
-"          exec ":!bundle exec rspec --color " . a:filename
         elseif glob(".zeus.sock") != ""
            exec ":!zeus rspec --color " . a:filename
-        elseif match(getcwd(), 'ctmweb') != -1
+        "elseif match(getcwd(), 'ctmweb') != -1
+        "   exec ":!zeus rspec --color " . a:filename
+        elseif match(getcwd(), 'tss') != -1
+           exec ":!../ctmweb/bin/rspec --color " . a:filename
+        elseif filereadable("Gemfile")
            exec ":!bundle exec rspec --color " . a:filename
         else
             exec ":!rspec --color " . a:filename

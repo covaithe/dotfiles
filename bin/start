@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git co -b feature/CTMWEB-$1
+
