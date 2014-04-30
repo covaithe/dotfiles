@@ -111,6 +111,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>d :redraw!<cr>
 map <leader>y "*y
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
@@ -234,8 +235,9 @@ endfunction
 nnoremap <leader>ri :call InlineVariable()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
+" Command-T settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set wildignore=tmp/**,doc/**,vendor/**,coverage/**,*.swp,*.swo
 map <leader>gr :topleft :split config/routes.rb<cr>
 function! ShowRoutes()
   " Requires 'scratch' plugin
@@ -353,6 +355,7 @@ function! RunTests(filename)
         "   exec ":!zeus rspec --color " . a:filename
         elseif match(getcwd(), 'tss') != -1
            exec ":!../ctmweb/bin/rspec --color " . a:filename
+           " exec ":!cd ../ctmweb && zeus rspec " . a:filename
         elseif filereadable("Gemfile")
            exec ":!bundle exec rspec --color " . a:filename
         else
