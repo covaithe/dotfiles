@@ -13,6 +13,7 @@ alias bu='bundle update'
 alias bp='bundle package'
 alias bout='bundle-outdated'
 alias bake='be rake'
+alias baket='RAILS_ENV=test be rake'
 alias shake='noglob bundle exec rake'
 alias spec='bake ctm:run_specs'
 
