@@ -332,7 +332,7 @@ endfunction
 
 function! SetTestFile()
     " Set the spec file that tests will be run for.
-    let js_test = match(expand("%"), '\(_spec.coffee\|_spec.js.coffee\)')
+    let js_test = match(expand("%"), '\(_spec.coffee\|_spec.js.coffee\)') != -1
     let rails = filereadable("Gemfile")
     if js_test && rails
       let t:grb_test_file= FindJasmineSpecName()
@@ -366,9 +366,10 @@ function! RunTests(filename)
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    echo a:filename
     if match(a:filename, '\.feature$') != -1
         exec ":!script/features " . a:filename
-    elseif match(a:filename, '\.coffee$') != 1
+    elseif match(a:filename, '\.coffee$') != -1
         if filereadable("Gemfile")
           exec ":!bundle exec rake spec:javascript SPEC=" . a:filename
         else
