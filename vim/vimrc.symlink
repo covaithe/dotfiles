@@ -237,7 +237,9 @@ nnoremap <leader>ri :call InlineVariable()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command-T settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set wildignore=tmp/**,doc/**,vendor/**,coverage/**,*.swp,*.swo
+set wildignore=tmp/**,doc/**,vendor/**,coverage/**,*.swp,*.swo,node_modules/**
+let g:CommandTMaxFiles=20000
+
 map <leader>gr :topleft :split config/routes.rb<cr>
 function! ShowRoutes()
   " Requires 'scratch' plugin
@@ -332,13 +334,14 @@ endfunction
 
 function! SetTestFile()
     " Set the spec file that tests will be run for.
-    let js_test = match(expand("%"), '\(_spec.coffee\|_spec.js.coffee\)') != -1
-    let rails = filereadable("Gemfile")
-    if js_test && rails
-      let t:grb_test_file= FindJasmineSpecName()
-    else
-      let t:grb_test_file=@%
-    endif
+    "let js_test = match(expand("%"), '\(_spec.coffee\|_spec.js.coffee\)') != -1
+    "let rails = filereadable("Gemfile")
+    "if js_test && rails
+    "  let t:grb_test_file= FindJasmineSpecName()
+    "else
+    "  let t:grb_test_file=@%
+    "endif
+    let t:grb_test_file=@%
 endfunction
 
 function! FindJasmineSpecName()
@@ -371,7 +374,7 @@ function! RunTests(filename)
         exec ":!script/features " . a:filename
     elseif match(a:filename, '\.coffee$') != -1
         if filereadable("Gemfile")
-          exec ":!bundle exec rake spec:javascript SPEC=" . a:filename
+          exec ":!rake karma:run"
         else
           exec ":!jasmine-node --coffee " . a:filename
         end
@@ -382,9 +385,10 @@ function! RunTests(filename)
            exec ":!zeus rspec --color " . a:filename
         "elseif match(getcwd(), 'ctmweb') != -1
         "   exec ":!zeus rspec --color " . a:filename
-        elseif match(getcwd(), 'tss') != -1
-           exec ":!../ctmweb/bin/rspec --color " . a:filename
-           " exec ":!cd ../ctmweb && zeus rspec " . a:filename
+        "elseif match(getcwd(), 'tss') != -1
+        "   exec ":!../ctmweb/bin/rspec --color " . a:filename
+        elseif filereadable("bin/rspec")
+           exec ":!bin/rspec " . a:filename
         elseif filereadable("Gemfile")
            exec ":!bundle exec rspec --color " . a:filename
         else

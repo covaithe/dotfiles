@@ -1,0 +1,2 @@
+#!/bin/bash
+bundle exec rake db:ctm:master_views && bundle exec rake db:ctm:master_views RAILS_ENV=test
