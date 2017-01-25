@@ -1,5 +1,9 @@
+# on mac os x, readline is not installed by default and so irb does not do history.
+# See https://paulschreiber.com/blog/2015/07/04/howto-make-readline-and-history-work-with-irb-and-rails-console-on-os-x-yosemite/
+export RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/local"
+
 export PATH="/Users/gfleming/.rbenv/shims:${PATH}"
-source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.zsh"
+source "/usr/local/Cellar/rbenv/1.0.0/completions/rbenv.zsh"
 rbenv rehash 2>/dev/null
 rbenv() {
   typeset command

@@ -33,3 +33,8 @@ precmd () {
       echo -ne "\e]2;${tab_label}\a" # set window title to full string
         echo -ne "\e]1;${tab_label: -24}\a" # set tab title to rightmost 24 characters
 }
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# disable autocorrect
+unsetopt correct
