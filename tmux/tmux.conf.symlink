@@ -55,7 +55,7 @@ set -g status-left "#[fg=green][#S] #[fg=black]#I #[fg=black]#P"
 set -g status-right "#[fg=red] %d %b %R"
 
 # UTF8 Support
-set -g status-utf8 on
+# set -g status-utf8 on
 
 # Status Bar up to date
 set -g status-interval 60
