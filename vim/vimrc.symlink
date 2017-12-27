@@ -1,9 +1,18 @@
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'chriskempson/base16-vim'
+
+call vundle#end()
+
+
 call pathogen#infect()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
 set hidden " allow unsaved background buffers and remember marks/undo for them
 set history=10000 " remember more commands and search history
 
@@ -102,6 +111,8 @@ augroup END
 ":set t_Co=256 " 256 colors
 ":set background=dark
 :colorscheme Tomorrow-Night
+"let base16colorspace=256
+":colorscheme base16-default-dark
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -371,7 +382,8 @@ function! RunTests(filename)
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     echo a:filename
     if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
+        "exec ":!script/features " . a:filename
+        exec ":!bin/cucumber " . a:filename
     elseif match(a:filename, '\.coffee$') != -1
         if filereadable("Gemfile")
           exec ":!rake karma:run"
