@@ -3,7 +3,7 @@
 export RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/local"
 
 export PATH="/Users/gfleming/.rbenv/shims:${PATH}"
-source "/usr/local/Cellar/rbenv/1.0.0/completions/rbenv.zsh"
+source "/usr/local/Cellar/rbenv/1.1.1/completions/rbenv.zsh"
 rbenv rehash 2>/dev/null
 rbenv() {
   typeset command
